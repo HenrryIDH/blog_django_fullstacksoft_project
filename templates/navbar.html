@@ -1,0 +1,74 @@
+{% load static %}
+
+<nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+    <button class="navbar-toggler navbar-toogler-right" type="button" data-toggle="collapse"
+        data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
+        aria-label="Toogle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    {% comment %} {% url 'blog:list' %} {% endcomment %}
+    <a class="navbar-brand" href="#"><img height="50px" src="../static/blog_site/media/coder.jpg"
+            alt="FULLSTACKSOFT_LOGO" />
+
+        Fullstacksoft HG</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+
+            <li class="nav-item active">
+                {% comment %} {% url 'blog:list' %} {% endcomment %}
+                <a class="nav-link" href="{% url 'blog:list' %}">Home</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="#">About</a>
+            </li>
+        </ul>
+    </div>
+
+    <div>
+        <ul class="navbar-nav navbar-right">
+
+            {% if request.user.is_authenticated %}
+
+            {% if request.user.is_superuser %}
+
+            <li class="nav-item active">
+                <a class="nav-link" href="/admin">Admin</a>
+            </li>
+            {% endif %}
+
+            <li class="nav-item active">
+                {% comment %} {% url 'logout' %} {% endcomment %}
+                <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+            </li>
+            <li class="nav-item active">
+                {% comment %} {% url 'profile' %} {% endcomment %}
+                <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+            </li>
+            <li class="nav-item active">
+                {% comment %} {% url 'blog:create' %} {% endcomment %}
+                <a class="nav-link" href="{% url 'blog:create' %}">New Post</a>
+            </li>
+            {% else %}
+
+            <li class="nav-item active">
+                {% comment %} {% url 'login' %} {% endcomment %}
+                <a class="nav-link" href="{% url 'login' %}">Log In</a>
+            </li>
+
+            <li class="nav-item active">
+                {% comment %} {% url 'register' %} {% endcomment %}
+                <a class="nav-link" href="{% url 'register' %}">Register</a>
+            </li>
+
+            {% endif %}
+
+        </ul>
+    </div>
+
+</nav>
